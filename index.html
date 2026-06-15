@@ -48,8 +48,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .cta { background: var(--g); border-radius: 10px; padding: 1.1rem 1.25rem; margin-top: 14px; text-align: center; }
 .cta p { color: rgba(255,255,255,0.9); font-size: 14px; line-height: 1.5; margin-bottom: 10px; }
 .cta strong { color: #fff; }
-.cb { background: #fff; color: var(--gd); font-size: 14px; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 10px; border: none; cursor: pointer; font-family: inherit; }
+.cb { background: #fff; color: var(--gd); font-size: 14px; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 10px; border: none; cursor: pointer; font-family: inherit; display: inline-block; text-decoration: none; }
 .cb:hover { opacity: 0.9; }
+.hint { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 10px; margin-bottom: 0; font-style: italic; }
 .fb { text-align: center; padding: 1rem 0 0.5rem; font-size: 12px; color: #bbb; border-top: 1px solid #f0f0f0; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 7px; }
 .fb img { width: 16px; height: 16px; object-fit: contain; opacity: 0.35; }
 </style>
@@ -185,7 +186,7 @@ function res(){
     <div class="dc"><div class="dl">Schlaf & Erholung</div><div class="dt">${schlafs[A.sl]}</div></div>
     <div class="dc"><div class="dl">Training</div><div class="dt">${trains[A.tr]}</div></div>
     <div class="dc"><div class="dl">Deine realistische Erfolgschance</div><div class="dt">Mit dem richtigen System: <strong>${ch}%</strong> Chance, dein Ziel dauerhaft zu erreichen — ohne Jo-Jo.</div><div class="sbw"><div class="sbf" id="sb" style="width:0%"></div></div></div>
-    <div class="cta"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><button class="cb">Ja, ich will meinen Plan</button></div>
+    <div class="cta"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><a class="cb" href="https://ig.me/m/philip.schumann" target="_blank" rel="noopener">Ja, ich will meinen Plan</a><p class="hint">Schreib mir einfach &bdquo;Plan&ldquo; und schick dein Ergebnis.</p></div>
     <div class="fb"><img src="${LOGO}" alt="" /><span>Schumann Coaching</span></div>
   `;
   document.getElementById('sr').classList.add('active');
