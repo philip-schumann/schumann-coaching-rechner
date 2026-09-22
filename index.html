@@ -186,12 +186,35 @@ function res(){
     <div class="dc"><div class="dl">Schlaf & Erholung</div><div class="dt">${schlafs[A.sl]}</div></div>
     <div class="dc"><div class="dl">Training</div><div class="dt">${trains[A.tr]}</div></div>
     <div class="dc"><div class="dl">Deine realistische Erfolgschance</div><div class="dt">Mit dem richtigen System: <strong>${ch}%</strong> Chance, dein Ziel dauerhaft zu erreichen — ohne Jo-Jo.</div><div class="sbw"><div class="sbf" id="sb" style="width:0%"></div></div></div>
-    <div class="cta"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><a class="cb" href="https://ig.me/m/philip.schumann" target="_blank" rel="noopener">Ja, ich will meinen Plan</a><p class="hint">Schreib mir einfach &bdquo;Diagnose&ldquo; und schick dein Ergebnis.</p></div>
+    <div class="cta"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><button class="cb" onclick="sendToSheet()">Ja, ich will meinen Plan</button><p class="hint">Schreib mir einfach &bdquo;Diagnose&ldquo; und schick dein Ergebnis.</p></div>
     <div class="fb"><img src="${LOGO}" alt="" /><span>Schumann Coaching</span></div>
   `;
   document.getElementById('sr').classList.add('active');
   setTimeout(()=>{const b=document.getElementById('sb');if(b)b.style.width=ch+'%';},400);
   window.scrollTo(0,0);
+}
+
+function sendToSheet(){
+  const SHEET_URL='https://script.google.com/macros/s/AKfycbw4RdO6k-A795UyeW7Gtzx75DdqNhoRJ6KyJ3ISdyrTpj1fE8qsXdcebsSKu1oI4U9b1g/exec';
+  const payload={
+    name: A.name||'',
+    alter: A.age||'',
+    gewicht: A.weight||'',
+    zielgewicht: A.goal||'',
+    dauer: A.d||'',
+    blockierer: document.querySelector('.bn')?.innerText||'',
+    alltag: A.al||'',
+    schlaf: A.sl||'',
+    training: A.tr||'',
+    erfolgschance: document.querySelector('.sbf')?.style.width||''
+  };
+  fetch(SHEET_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).catch(()=>{});
+  window.open('https://ig.me/m/philip.schumann','_blank');
 }
 </script>
 </body>
