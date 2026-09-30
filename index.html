@@ -51,6 +51,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .cb { background: #fff; color: var(--gd); font-size: 14px; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 10px; border: none; cursor: pointer; font-family: inherit; display: inline-block; text-decoration: none; }
 .cb:hover { opacity: 0.9; }
 .hint { color: rgba(255,255,255,0.75); font-size: 12px; margin-top: 10px; margin-bottom: 0; font-style: italic; }
+.confirm-box { background: var(--gl); border: 2px solid var(--g); border-radius: 10px; padding: 1.25rem; margin-top: 14px; text-align: center; }
+.confirm-icon { font-size: 32px; margin-bottom: 8px; }
+.confirm-title { font-size: 16px; font-weight: 700; color: var(--gd); margin-bottom: 6px; }
+.confirm-text { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 14px; }
+.confirm-btn { background: var(--g); color: #fff; font-size: 14px; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 10px; display: inline-block; text-decoration: none; }
+.confirm-btn:hover { opacity: 0.9; }
 .fb { text-align: center; padding: 1rem 0 0.5rem; font-size: 12px; color: #bbb; border-top: 1px solid #f0f0f0; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 7px; }
 .fb img { width: 16px; height: 16px; object-fit: contain; opacity: 0.35; }
 </style>
@@ -186,7 +192,13 @@ function res(){
     <div class="dc"><div class="dl">Schlaf & Erholung</div><div class="dt">${schlafs[A.sl]}</div></div>
     <div class="dc"><div class="dl">Training</div><div class="dt">${trains[A.tr]}</div></div>
     <div class="dc"><div class="dl">Deine realistische Erfolgschance</div><div class="dt">Mit dem richtigen System: <strong>${ch}%</strong> Chance, dein Ziel dauerhaft zu erreichen — ohne Jo-Jo.</div><div class="sbw"><div class="sbf" id="sb" style="width:0%"></div></div></div>
-    <div class="cta"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><button class="cb" onclick="sendToSheet()">Ja, ich will meinen Plan</button><p class="hint">Schreib mir einfach &bdquo;Diagnose&ldquo; und schick dein Ergebnis.</p></div>
+    <div class="cta" id="cta-box"><p><strong>Willst du wissen, wie dein konkreter Plan aussieht?</strong><br>Philip schaut sich deine Ergebnisse persönlich an und zeigt dir genau, was bei dir funktioniert.</p><button class="cb" onclick="sendToSheet()">Ja, ich will meinen Plan</button><p class="hint">Schreib mir einfach &bdquo;Diagnose&ldquo; und schick dein Ergebnis.</p></div>
+    <div class="confirm-box" id="confirm-box" style="display:none;">
+      <div class="confirm-icon">✅</div>
+      <p class="confirm-title">Dein Ergebnis ist eingegangen!</p>
+      <p class="confirm-text">Philip schaut sich deine Diagnose gerade persönlich an und meldet sich in Kürze per DM bei dir.</p>
+      <a class="cb confirm-btn" href="https://ig.me/m/philip.schumann" target="_blank" rel="noopener">Zu Instagram →</a>
+    </div>
     <div class="fb"><img src="${LOGO}" alt="" /><span>Schumann Coaching</span></div>
   `;
   document.getElementById('sr').classList.add('active');
@@ -214,7 +226,9 @@ function sendToSheet(){
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify(payload)
   }).catch(()=>{});
-  window.open('https://ig.me/m/philip.schumann','_blank');
+  document.getElementById('cta-box').style.display='none';
+  document.getElementById('confirm-box').style.display='block';
+  window.scrollTo(0,document.body.scrollHeight);
 }
 </script>
 </body>
